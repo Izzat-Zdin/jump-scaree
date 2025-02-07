@@ -27,30 +27,28 @@
         const black = document.getElementById('black');
         const player = document.getElementById('music');
 
+        const swap = async () => {
+            const img = document.getElementById('jas');
+            img.src = 'ahdza.jpg'
+            await new Promise(r => setTimeout(r, 100));
+            img.src = 'paim.jpg'
+            timer = setTimeout(swap, 200);
+        }
+
         const buttonEvent = () => {
             const btn = document.getElementById('enter');
             btn.addEventListener("click", () => {
                 const black = document.getElementById('black');
                 const player = document.getElementById('music');
-                black.style.visibility = 'hidden'
+                black.style.visibility = 'hidden';
                 player.muted = false;
                 player.play();
-                startImageSwap(); // Start image swapping immediately after button click
-            });
+                setTimeout(() => {
+                    swap();
+                }, 100); // Wait for 100ms before starting the image swap
+            })
         }
-
-        const startImageSwap = () => {
-            const img = document.getElementById('jas');
-            img.src = 'ahdza.jpg'; // Start by showing the initial image
-            setTimeout(() => {
-                img.src = 'paim.jpg'; // Change to the next image
-                setInterval(() => {
-                    img.src = (img.src.includes('paim.jpg')) ? 'ahdza.jpg' : 'paim.jpg'; // Alternate images
-                }, 200);
-            }, 100); // Small delay to prevent flicker
-        }
-
-        buttonEvent();
+        buttonEvent()
     </script>
 </body>
 
