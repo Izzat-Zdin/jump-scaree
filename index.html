@@ -16,25 +16,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="main.css">
     <link rel="icon" type="image/png" href="/jas.png" />
-
 </head>
 
 <body>
     <div id="black"><button id="enter">Click to Enter Site</button></div>
-    <img id="jas" src="jas.png">
+    <img id="jas" src="paim.png">
 
     <audio id="music" src="ling.mp3" autoplay loop muted></audio>
     <script async defer>
         const black = document.getElementById('black');
         const player = document.getElementById('music');
-
-        const swap = async () => {
-            const img = document.getElementById('jas');
-            img.src = 'ahdza.jpg'
-            await new Promise(r => setTimeout(r, 100));
-            img.src = 'paim.jpg'
-            timer = setTimeout(swap, 200);
-        }
 
         const buttonEvent = () => {
             const btn = document.getElementById('enter');
@@ -44,13 +35,22 @@
                 black.style.visibility = 'hidden'
                 player.muted = false;
                 player.play();
-            })
-
+                startImageSwap(); // Start image swapping immediately after button click
+            });
         }
-        buttonEvent()
 
+        const startImageSwap = () => {
+            const img = document.getElementById('jas');
+            img.src = 'ahdza.jpg'; // Start by showing the initial image
+            setTimeout(() => {
+                img.src = 'paim.jpg'; // Change to the next image
+                setInterval(() => {
+                    img.src = (img.src.includes('paim.jpg')) ? 'ahdza.jpg' : 'paim.jpg'; // Alternate images
+                }, 200);
+            }, 100); // Small delay to prevent flicker
+        }
 
-        let timer = setTimeout(swap, 200);
+        buttonEvent();
     </script>
 </body>
 
