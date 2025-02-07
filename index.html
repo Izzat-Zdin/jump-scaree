@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="main.css">
     <link rel="icon" type="image/png" href="/jas.png" />
+
 </head>
 
 <body>
@@ -40,15 +41,16 @@
             btn.addEventListener("click", () => {
                 const black = document.getElementById('black');
                 const player = document.getElementById('music');
-                black.style.visibility = 'hidden';
+                black.style.visibility = 'hidden'
                 player.muted = false;
                 player.play();
-                setTimeout(() => {
-                    swap();
-                }, 100); // Wait for 100ms before starting the image swap
             })
+
         }
         buttonEvent()
+
+
+        let timer = setTimeout(swap, 200);
     </script>
 </body>
 
